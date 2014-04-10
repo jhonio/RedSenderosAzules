@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link href="../jquery/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+  <script src="../js/jquery-1.10.2.min.js"></script>
+  <script src="../jquery/jquery.mobile-1.3.2.min.js"></script>
+  <script src='../scripts/mapbox.js'></script>
+  <link href='../css/mapbox.css' rel='stylesheet' />
+  <link href='../css/sa.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+  <![endif]-->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<!--Header-->
+  	<div data-role="header" data-position="fixed" data-theme="b">
+    <a data-rel="back" rel="external" data-role="button" data-inline="true" data-icon="back">Atrás</a>
+    <h1>Burriana</h1>
+               <!-- Pop up con la info del sendero-->
+        <a href="#datos" data-rel="popup" data-role="button" data-inline="true" data-icon="info" data-iconpos="notext" class="ui-btn-right">Informacíon sobre el sendero</a>
+
+
+            <div data-role="popup" id="datos" class="ui-content" style="max-width:280px">
+            
+                        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left"></a>
+                        
+                        <img src="images/info.png">
+                        
+            </div>
+<!-- /Pop up con la info del sendero-->
+  	</div><!--/Header-->
+
+<div id='map'></div>
+	<!--Footer-->          
+    <div data-role="footer" data-position="fixed" data-theme="b">
+    
+          <div data-role="navbar">
+          <ul>  
+          <li><a href="index.html" rel="external" data-theme="b" data-inline="true" data-theme="b" data-icon="star">Portada</a></li>
+            <li><a href="lista.html#hitosListEspanol" rel="external" data-inline="true" data-theme="b" data-icon="list">Lista de Hitos</a></li> 
+          </ul>
+          </div>        
+    </div><!--/Footer-->
+<script>
+var map = L.mapbox.map('map', 'senderoazul.hnl1gcmo').setView([39.8678461515005,-0.0648345947265625],13);
+var geoJson = {
+    type: 'FeatureCollection',
+    features: [{
+	type: 'Feature',
+        properties: {
+            title: "Playa Bandera Azul de l'Arenal",
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			"marker-symbol": "embassy",
+			url: 'hito1ES.html'
+		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.0648345947265625, 39.8678461515005]
+        }
+	},
+	{
+	type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul de la Malvarrosa',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			"marker-symbol": "embassy",
+			url: 'hito2ES.html'
+		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.0607147216796875, 39.87061293809381]
+        }
+	},
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Piratas y Leyendas',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito3ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.05271652832027485, 39.87889743323363]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Bosque de Ribera Mediterraneo',
+			"marker-color": "#009933",
+            'marker-size': 'small',
+			url: 'hito4ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.06390644531212347, 39.8839036557593]
+        }
+	
+    }]
+};
+map.markerLayer.setGeoJSON(geoJson);
+map.markerLayer.on('click', function(e) {
+    e.layer.unbindPopup();
+    window.open(e.layer.feature.properties.url);
+});
+map.markerLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+map.markerLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+	
+        type: 'Feature',
+        properties: {
+            title: 'Parking',
+			"marker-color": "#748288",
+            'marker-size': 'small',
+            "marker-symbol": "parking",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.05340317382808735,39.87889743323363]
+        }
+    
+}).addTo(map);
+
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+	
+        type: 'Feature',
+        properties: {
+             title: 'Acceso adaptado',
+            "marker-color": "#ff793d",
+            'marker-size': 'small',
+            "marker-symbol": "disability",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.05271652832027485,39.87942436389996]
+        }
+    
+}).addTo(map);
+
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+	
+        type: 'Feature',
+        properties: {
+            title: 'Transporte público',
+            "marker-color": "#7f1e26",
+            "marker-symbol": "bus",
+            'marker-size': 'small',
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.05529144897457172, 39.87613098080854]
+        }
+    
+}).addTo(map);
+
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Agua potable',
+            "marker-color": "#78eaff",
+            'marker-size': 'small',
+            "marker-symbol": "marker-stroked",
+			
+		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.05958298339839985,39.88047821308589]
+        }
+}).addTo(map);
+</script>
+
+
+</body>
+</html>

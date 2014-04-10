@@ -1,0 +1,493 @@
+0<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link href="../jquery/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+  <script src="../js/jquery-1.10.2.min.js"></script>
+  <script src="../jquery/jquery.mobile-1.3.2.min.js"></script>
+  <script src='../scripts/mapbox.js'></script>
+  <link href='../css/mapbox.css' rel='stylesheet' />
+  <link href='../css/sa.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+  <![endif]-->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<!--Header-->
+  	<div data-role="header" data-position="fixed" data-theme="b">
+    <a data-rel="back" rel="external" data-role="button" data-inline="true" data-icon="back">Atrás</a>
+    <h1>Ribadeo</h1>
+                   <!-- Pop up con la info del sendero-->
+        <a href="#datos" data-rel="popup" data-role="button" data-inline="true" data-icon="info" data-iconpos="notext" class="ui-btn-right">Informacíon sobre el sendero</a>
+
+            <div data-role="popup" id="datos" class="ui-content" style="max-width:280px">
+            
+                        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left"></a>
+                        
+                        <img src="images/info.png">
+                        
+            </div>
+<!-- /Pop up con la info del sendero-->
+  	</div><!--/Header-->
+
+<div id='map'></div>
+	<!--Footer-->          
+    <div data-role="footer" data-position="fixed" data-theme="b">
+    
+          <div data-role="navbar">
+          <ul>  
+          <li><a href="index.html" rel="external" data-theme="b" data-inline="true" data-theme="b" data-icon="star">Portada</a></li>
+            <li><a href="lista.html#hitosListEspanol" rel="external" data-inline="true" data-theme="b" data-icon="list">Lista de Hitos</a></li> 
+          </ul>
+          </div>        
+    </div><!--/Footer-->
+<script>
+var map = L.mapbox.map('map', 'senderoazul.hnlei59h').setView([43.53579498322614,-7.036526143550873],13);
+var geoJson = {
+    type: 'FeatureCollection',
+    features: [{
+        type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul As Catedrais',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			'marker-symbol': 'embassy',
+			url: 'hito27ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.157550096511841,43.55398647420958]
+        }
+    }
+	,{
+        type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul de Esteiro',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			'marker-symbol': 'embassy',
+			url: 'hito26ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.146950006484985,43.55373377121119]
+        }
+    }
+	,{
+        type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul Os Castros-Illas',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			'marker-symbol': 'embassy',
+			url: 'hito25ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.134547710418701,43.55497702055406]
+        }
+    }
+	,{
+        type: 'Feature',
+        properties: {
+            title: 'El Sendero Azul de Ribadeo',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito1ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.050999343395233,43.519432146104485]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Molino de As Aceas',
+			"marker-color": "#009933",	
+			'marker-size': 'small',
+			url: 'hito2ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.051248788833618,43.51961302891566]
+        }
+	
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Ría de Ribadeo',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito3ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.048577308654785,43.52081890046545]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Sobre las rías, estuarios y sus orígenes',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito4ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.048008680343628,43.5212584541011]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Glaciaciones y el nivel del Mar',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito5ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.047600984573364,43.52168633509519]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'De la Erosión a la Sedimentación',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito6ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.0471718311309814,43.52209087433518]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Rías y Estuarios',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito7ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.0468714237213135,43.52239427698508]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Las Mareas',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito8ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.046057084655786,43.52312836091145]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Faro de Illa Pancha',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito24ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.042118549346924,43.55556487203433]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Una Antigua Llanura Mareal en el Hemisferio Sur',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito9ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.0454981327056885,43.525389323829266]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Casa das Algas',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito10ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.048507571220398,43.528411447642476]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Playa de Os Bloques',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito11ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.044532537460327,43.52921654388861]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Puerto Comercial de Ribadeo',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito12ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.038561940193176,43.53376299682627]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Puerto Pesquero de Ribadeo',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito13ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.036526143550873,43.53579498322614]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Puerto Deportivo de Ribadeo',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			'marker-symbol': 'harbor',
+			url: 'hito14ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.037295937538147,43.540315664271276]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Conjunto del Cargadero',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito15ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.0369579792022705,43.54494293510329]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Al Norte de Gondwana',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito16ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.036861419677734,43.54709313420658]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Cataclismos Geológicos',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito17ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.036818504333496,43.54824791110892]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'El Cuaternario en la ría de Ribadeo',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito18ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.037043809890747,43.54903330228773]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Una Gran Fractura',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito19ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.036367893218994,43.550005306902925]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Esteros y Marismas',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito20ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.037526607513428,43.55161491207312]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Un Duro Medio Ambiente',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito21ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.0390554666519165,43.55241969853806]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'La Vida Animal',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito22ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.041099309921265,43.55256354812666]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Del Mar a la Tierra',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito23ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.042660355567932,43.55419641127932]
+        }
+    }]
+};
+map.markerLayer.setGeoJSON(geoJson);
+map.markerLayer.on('click', function(e) {
+    e.layer.unbindPopup();
+    window.open(e.layer.feature.properties.url);
+});
+map.markerLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+map.markerLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+        type: 'Feature',
+        properties: {
+            title: '<center>S.O.S</center>',
+			"marker-color": "#ff0000",
+			"marker-symbol": "hospital",
+			'marker-size': 'small',
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.0429768562316895,43.535201922500875]
+        } 
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: '<center>WC</center>',
+			"marker-color": "#ffc84e",
+			"marker-symbol": "toilets",
+			'marker-size': 'small',	
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.042115867137909,43.530682802680005]
+        }
+}).addTo(map);
+
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: '<center>WC</center>',
+			"marker-color": "#ffc84e",
+			"marker-symbol": "toilets",
+			'marker-size': 'small',
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.037569522857666,43.54039343646336]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Acceso adaptado',
+			"marker-color": "#ff793d",
+			'marker-size': 'small',
+			"marker-symbol": "disability",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.040874004364014,43.53116117648348]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+	
+        type: 'Feature',
+        properties: {
+            title: 'Parking',
+			"marker-color": "#748288",
+			'marker-size': 'small',
+			"marker-symbol": "parking",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.037571616363493,43.54054479288564]
+        }
+}).addTo(map);
+</script>
+</body>
+</html>

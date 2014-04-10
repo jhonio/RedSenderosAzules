@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link href="../jquery/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+  <script src="../js/jquery-1.10.2.min.js"></script>
+  <script src="../jquery/jquery.mobile-1.3.2.min.js"></script>
+  <script src='../scripts/mapbox.js'></script>
+  <link href='../css/mapbox.css' rel='stylesheet' />
+  <link href='../css/sa.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+  <![endif]-->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<!--Header-->
+  	<div data-role="header" data-position="fixed" data-theme="b">
+    <a data-rel="back" rel="external" data-role="button" data-inline="true" data-icon="back">Atrás</a>
+    <h1>Oropesa del Mar</h1>
+               <!-- Pop up con la info del sendero-->
+        <a href="#datos" data-rel="popup" data-role="button" data-inline="true" data-icon="info" data-iconpos="notext" class="ui-btn-right">Informacíon sobre el sendero</a>
+
+
+            <div data-role="popup" id="datos" class="ui-content" style="max-width:280px">
+            
+                        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left"></a>
+                        
+                        <img src="images/info.png">
+                        
+            </div>
+<!-- /Pop up con la info del sendero-->
+  	</div><!--/Header-->
+
+<div id='map'></div>
+	<!--Footer-->          
+    <div data-role="footer" data-position="fixed" data-theme="b">
+    
+          <div data-role="navbar">
+          <ul>  
+          <li><a href="index.html" rel="external" data-theme="b" data-inline="true" data-theme="b" data-icon="star">Portada</a></li>
+            <li><a href="lista.html" rel="external" data-inline="true" data-theme="b" data-icon="list">Lista de Hitos</a></li> 
+          </ul>
+          </div>        
+    </div><!--/Footer-->
+<script>
+var map = L.mapbox.map('map', 'senderoazul.hnlaomd1').setView([40.09593265290899, 0.11930465698242188],12);
+var geoJson = {
+    type: 'FeatureCollection',
+    features: [
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Platja de Morro de Gos',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			'marker-symbol': 'embassy',
+			url: 'hito2ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.14705259399420356,40.091981789222984]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Platja de la Concha',
+			"marker-color": "#0066cc",
+            'marker-size': 'small',
+            'marker-symbol': 'embassy',
+			url: 'hito6ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.13932783203131294,40.08291990363397]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Platja de les Amplaries',
+			"marker-color": "#0066cc",
+            'marker-size': 'small',
+            'marker-symbol': 'embassy',
+			url: 'hito1ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.15443403320318794,40.109379853547225]
+        }
+	
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Platja de les Platgetes de Bellver',
+			"marker-color": "#0066cc",
+            'marker-size': 'small',
+            'marker-symbol': 'embassy',
+			url: 'hito8ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.09589750366217231,40.056778144003516]
+
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Pequeña isla (La illeta)',
+            "marker-color": "#009933",
+            'marker-size': 'small',
+            url: 'hito3ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.1487692077637348,40.086728669176175]
+
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Faro',
+            "marker-color": "#009933",
+            'marker-size': 'small',
+            url: 'hito4ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.14756757812506294,40.08580933148649]
+
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Torre del Rey',
+            "marker-color": "#009933",
+            'marker-size': 'small',
+            url: 'hito5ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.14619428710943794,40.083445263274186]
+
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Club Náutico de Oropesa del Mar',
+			"marker-color": "#0066cc",
+            'marker-size': 'small',
+            'marker-symbol': 'harbor',
+			url: 'hito7ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.13314802246100044,40.07635256607937]
+        }
+    }]
+};
+map.markerLayer.setGeoJSON(geoJson);
+map.markerLayer.on('click', function(e) {
+    e.layer.unbindPopup();
+    window.open(e.layer.feature.properties.url);
+});
+map.markerLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+map.markerLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: ' WC',
+			"marker-color": "#ffc84e",
+			"marker-symbol": "toilets",
+			'marker-size': 'small',		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.14130926132202148,40.08456796412148]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+    
+        type: 'Feature',
+        properties: {
+            title: 'S.O.S.',
+            "marker-color": "#ff0000",
+            "marker-symbol": "hospital",
+            'marker-size': 'small',
+            
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.13520795898443794,40.08003035314797]
+        }
+    
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Información turística',
+			"marker-color": "#ff00da",
+			'marker-size': 'small',
+			"marker-symbol": "i",	
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.13726789550787544,40.08160648679727]
+        }  
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Acceso adaptado',
+			"marker-color": "#ff793d",
+			'marker-size': 'small',
+			"marker-symbol": "disability",	
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.13892745971679688,40.08253220650501]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Transporte público',
+			"marker-color": "#7f1e26",
+			'marker-size': 'small',
+			"marker-symbol": "bus",			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.13909912109375,40.08253220650503]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+    
+        type: 'Feature',
+        properties: {
+            title: 'Parking',
+            "marker-color": "#748288",
+            'marker-size': 'small',
+            "marker-symbol": "parking",
+            
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.14562225341796875, 40.08804831194462]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Aparcabicis',
+            "marker-color": "#880ce8",
+            'marker-size': 'small',
+            "marker-symbol": "bicycle",
+            
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.1384124755859375, 40.08253220650501]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Agua potable',
+            "marker-color": "#78eaff",
+            'marker-size': 'small',
+            "marker-symbol": "marker-stroked",
+            
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.14630889892578125, 40.089821250913126]
+        }
+}).addTo(map);
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link href="../jquery/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+  <script src="../js/jquery-1.10.2.min.js"></script>
+  <script src="../jquery/jquery.mobile-1.3.2.min.js"></script>
+  <script src='../scripts/mapbox.js'></script>
+  <link href='../css/mapbox.css' rel='stylesheet' />
+  <link href='../css/sa.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+  <![endif]-->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<!--Header-->
+  	<div data-role="header" data-position="fixed" data-theme="b">
+    <a data-rel="back" rel="external" data-role="button" data-inline="true" data-icon="back">Atrás</a>
+    <h1>Gozón</h1>
+               <!-- Pop up con la info del sendero-->
+        <a href="#datos" data-rel="popup" data-role="button" data-inline="true" data-icon="info" data-iconpos="notext" class="ui-btn-right">Informacíon sobre el sendero</a>
+
+
+            <div data-role="popup" id="datos" class="ui-content" style="max-width:280px">
+            
+                        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left"></a>
+                        
+                        <img src="images/info.png">
+                        
+            </div>
+<!-- /Pop up con la info del sendero-->
+  	</div><!--/Header-->
+
+<div id='map'></div>
+	<!--Footer-->          
+    <div data-role="footer" data-position="fixed" data-theme="b">
+    
+          <div data-role="navbar">
+          <ul>  
+          <li><a href="index.html" rel="external" data-theme="b" data-inline="true" data-theme="b" data-icon="star">Portada</a></li>
+            <li><a href="lista.html#hitosListEspanol" rel="external" data-inline="true" data-theme="b" data-icon="list">Lista de Hitos</a></li> 
+          </ul>
+          </div>        
+    </div><!--/Footer-->
+<script>
+var map = L.mapbox.map('map', 'senderoazul.hnl661hk').setView([43.65560060839165,-5.848540663719177],16);
+var geoJson = {
+    type: 'FeatureCollection',
+    features: [
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul La Marina de Luanco',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			'marker-symbol':'embassy',
+			url: 'hito1ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.786683559417725,43.617995840380964]
+        }
+    }
+	,{
+        type: 'Feature',
+        properties: {
+            title: 'Centro de Interpretación del Medio Marino de Peñas',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			'marker-symbol':'museum',
+			url: 'hito2ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.848540663719177,43.65560060839165]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Arqueología submarina',
+			"marker-color": "#009933",	
+			'marker-size': 'small',
+			url: 'hito3ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.8467864990234375,43.65647774613558]
+        }
+	
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Paisaje Protegido del Cabo Peñas',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito4ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.847151279449463,43.6564855083593]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Geología',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito5ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.847365856170654,43.65633802593692]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Flora',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito6ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.847891569137573,43.65622935444654]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Fauna',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito7ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.8483850955963135,43.656221592189716]
+        }
+    }]
+};
+map.markerLayer.setGeoJSON(geoJson);
+map.markerLayer.on('click', function(e) {
+    e.layer.unbindPopup();
+    window.open(e.layer.feature.properties.url);
+});
+map.markerLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+map.markerLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Información turística',
+			"marker-color": "#ff00da",
+			'marker-size': 'small',
+			"marker-symbol": "i",			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.84848165512085,43.65532892596064]
+        }
+}).addTo(map);
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Senderos Azules</title>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    
+    <link href="../jquery/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+    <link href="../swipeshow-master/jquery.swipeshow.css" rel="stylesheet" />
+    <link href="../swipeshow-master/slideshow-theme.css" rel="stylesheet" />
+    <link href='../css/sa.css' rel='stylesheet' />
+    
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../jquery/jquery.mobile-1.3.2.min.js"></script>
+    <script src="../swipeshow-master/jquery.swipeshow.min.js"></script>
+    
+    <script>
+      $(function() {
+        $(".slideshow").swipeshow();
+      });
+    </script>
+  </head>
+<body>
+	
+<!--hito 1 Alcossebre-->
+<div data-role="page" id="1alcossebreEs" data-theme="d">  
+    
+  <!-- cabecera-->
+    <div data-role="header" data-position="fixed" data-theme="b">
+    <a href="sampleMap.html" rel="external" data-role="button" data-icon="arrow-l" data data-iconpos="notext" data-theme="a" data-inline="true">Atrás</a>
+      <h1>Alcossebre</h1>
+    <a href="hito2ES.html" rel="external" data-role="button" data-icon="arrow-r" data data-iconpos="notext" data-theme="a" data-inline="true">Siguiente</a>
+  	</div> <!--/cabecera-->
+  <!--contenido-->
+   <div data-role="content" data-theme="c">
+   	<div class="container">
+   		<section class="main">
+        	<h1>El Sendero Azul de Alcossebre</h1>
+    	</section>
+   		 	<br>
+    	<section class="main2">
+         <h4><p>El Sendero Azul de Alcossebre nace como elemento de protección del sistema dunar existente en las Playas Carregador y Romana. Las dunas están comprendidas entre ambas playas, y sus arenas contribuyen a la formación y mantenimiento de ambos arenales, de ahí la importancia de su conservación. El conjunto está constituido por las rocas de base, las que forman la llamada Punta del Carregador, también conocido como Roquer Martí.</p></h4>
+   		</section>
+        <br>
+      <div id="fotos">
+        <div class="slideshow swipeshow">
+            <ul class="slides">
+                  <li class="slide">
+                          <img src="images/00024_08_PRESERVACION DUNAS Y ACCESIBILIDAD.jpg" alt=""/>
+                  </li>
+                  <li class="slide">
+                          <img src="images/00024_09_QR SENDA LITORAL.jpg" alt=""/>
+                  </li>
+            </ul>   
+            <div class='dots'></div>
+        </div>
+      </div>
+
+  <br>
+   <section class="main3">
+   
+      <p>La duna está sometida a los vientos que de una y otra playa la alcanzan, lo que le da una configuración irregular compuesta de numerosos pequeños montículos de escasa longitud. El sendero tiene como objetivo principal frenar la erosión y facilitar la conservación y regeneración de la zona dunar y su ecosistema. Además, facilita una zona de tránsito por las playas, haciendo más cómodo y seguro el desplazamiento de los usuarios.</p>
+   
+    </section>
+  
+  </div><!--container-->
+</div><!--content-->      
+
+                    <!-- /pie-->
+  <div data-role="footer" data-position="fixed" data-theme="b">   
+
+    <div data-role="navbar">
+        <ul>
+            <li><a href="index.html" rel="external" data-theme="b" data-inline="true" data-theme="b" data-icon="home">Portada</a></li>
+            <li><a href="sampleMap.html" rel="external" data-theme="b" data-inline="true" class="ui-btn-active" data-theme="b" data-icon="earth">Mapa</a></li>
+            <li><a href="lista.html" rel="external" data-inline="true" data-theme="b" data-icon="list">Lista de Hitos</a></li>
+        </ul>
+    </div><!-- /navbar -->
+
+  </div><!-- /pie-->
+
+</div><!--hito 1 Alcossebre-->
+
+</body>
+</html>

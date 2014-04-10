@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+    <link href="jquery/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+    <link href='css/sa.css' rel='stylesheet' />
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="jquery/jquery.mobile-1.3.2.min.js"></script>
+  <script src='scripts/mapbox.js'></script>
+  <link href='css/mapbox.css' rel='stylesheet' />
+ 
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+  <![endif]-->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+
+<!--Header-->
+    <div data-role="header" data-position="fixed" data-theme="b">
+    <a href="nosotros.html" rel="external" data-role="button" data-icon="about" data-iconpos="notext" data-theme="b" data-inline="true">Sobre Nosotros</a>
+    <h1>Red de Senderos Azules</h1>
+    </div><!--/Header-->
+
+<div id='map'></div>
+
+    <!--Footer-->          
+    <div data-role="footer" data-position="fixed" data-theme="b">
+    
+          <div data-role="navbar">
+          <ul>  
+            <li><a href="listaSenderos.html" rel="external" data-inline="true" data-theme="b" data-icon="list">Lista de Senderos Azules</a></li> 
+          </ul>
+          </div>        
+    </div><!--/Footer-->
+
+<script>
+var map = L.mapbox.map('map', 'senderoazul.hkd72k54').setView([39.64, -3.911],4);
+var geoJson = {
+    type: 'FeatureCollection',
+    features: [{
+        
+    type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Adra',
+            "marker-color": "#0066cc",
+            'marker-size': 'small',
+            url: 'Adra/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-3.01493759155278,36.74476655061408]
+        }
+    },
+    {
+    type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de A Guarda',
+            "marker-color": "#0066cc",
+            'marker-size': 'small',
+            url: 'AGuarda/index.html'
+        
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.876030445098877,41.90053621926224]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Alcanar',
+            "marker-color": "#0066cc",
+            'marker-size': 'small',
+            url: 'Alcanar/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.5292186141014099, 40.55020844971173]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+
+            title: 'Sendero Azul de Alcossebre',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Alcossebre/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.272,40.233]
+        }
+    
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: "Sendero Azul de L'Alfàs del Pi",
+            "marker-color": "#0066cc",
+            'marker-size': 'small',
+            url: 'Alfas/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.06569266319274902,38.57312179264198]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Almenara',
+             "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Almenara/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.18281936645507812,39.7359702602001]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: "Sendero Azul de L'Ametlla de Mar",
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Ametlla/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.799426794052124, 40.879129893681075]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Arnuero',
+             "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Arnuero/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-3.541400000000067,43.4963]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Arteixo',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Arteixo/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.509933054447174,43.324301609090504]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Baiona',
+             "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Baiona/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.851560609436092,42.1224431456053]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Benissa',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Benissa/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.08811432077050749, 38.664770735592015]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Boiro',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Boiro/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.884366989135742, 42.61478640376031]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Bueu',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Bueu/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.825346165466271,42.3246107929651]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Burela',
+             "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Burela/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.357621192932129, 43.66079338771192]
+        }
+    }, 
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Burriana',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Burriana/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.05271652832027485, 39.87889743323363]
+        }
+    }, 
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Calonge',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Calonge/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [3.0933380126953125, 41.83737141584969]
+        }
+    }, 
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Cangas do Morrazo',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Cangas/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.866560382080024,42.25121862597112]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Cartagena',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Cartagena/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.6903362274169922,37.63414974534935]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Castellón',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Castellon/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.022766590118408203, 39.97850129959121]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Cudillero',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Cudillero/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.185882091522217,43.562605772500405]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Foz',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Foz/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.248401641845703,43.571567380753564]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Gandía',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Gandia/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.164794921875,39.00797974227288]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Gozón',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Gozon/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.848540663719177,43.65560060839165]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Granadilla de Abona',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Granadilla/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-16.538500785827637, 28.044087888474632]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de la Illa de Arousa',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'IllaArousa/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.862480163574219,42.54580394643007]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Isla Cristina ',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'IslaCristina/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.331969552001965, 37.193555367325]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Islantilla',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Islantilla/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.236582195281926, 37.204246303180646]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de San Cristobal de La Laguna ',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Laguna/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-16.331683695316315, 28.56478026001518]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Laracha',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Laracha/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.606141209602356, 43.317824999977226]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Llanes',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Llanes/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-4.752747612762505,43.42267675365484]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Manilva',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Manilva/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-5.230779647827148,36.35468843224747]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Miramar',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Miramar/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.12455129623413086,38.958753014852476]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Muro',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Muro/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [3.1211471557617187,39.8008872583368]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Nigrán',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Nigran/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.818835258483887,42.137945260496146]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Noja',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Noja/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-3.521961111111111,43.493122222222226]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Oropesa',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Oropesa/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.14756757812506294,40.08580933148649]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Ortigueira',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Ortigueira/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.859383970069871,43.687532198388034]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de O Vicedo',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'OVicedo/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.61386012978619, 43.70071853474525]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Pájara',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Pajara/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-14.331344432067908,28.04728923470789]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Peñíscola',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Peniscola/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.41037797927856445,40.38563473949247]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: "Sendero Azul de Castell-Platja d'Aro",
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'PlatjaAro/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [3.05419921875,41.79047281522011]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Punta Umbría',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'PuntaUmbria/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.981176131534539,37.1864174813392]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Ribadeo',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Ribadeo/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-7.037295937538147,43.540315664271276]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Teulada',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Teulada/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.14630889892578125,38.68758161483986]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Torredembarra',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Torredembarra/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [1.4130520820617675 , 41.143953861881734]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Valencia',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Valencia/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-0.326935438111, 39.3876548277]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Vigo',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Vigo/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.702762424945831,42.21722340549205]
+        }
+    },
+     {
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul de Vinarós',
+            "marker-color": "#0066cc",  
+            'marker-size': 'small',
+            url: 'Vinaros/index.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.5142684326172002,40.52256150547558]
+        }
+    }]
+};
+
+map.markerLayer.setGeoJSON(geoJson);
+map.markerLayer.on('click', function(e) {
+    e.layer.unbindPopup();
+    window.open(e.layer.feature.properties.url);
+});
+map.markerLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+map.markerLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link href="../jquery/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+  <script src="../js/jquery-1.10.2.min.js"></script>
+  <script src="../jquery/jquery.mobile-1.3.2.min.js"></script>
+  <script src='../scripts/mapbox.js'></script>
+  <link href='../css/mapbox.css' rel='stylesheet' />
+  <link href='../css/sa.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+  <![endif]-->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<!--Header-->
+  	<div data-role="header" data-position="fixed" data-theme="b">
+    <a data-rel="back" rel="external" data-role="button" data-inline="true" data-icon="back">Atrás</a>
+    <h1>Cudillero</h1>
+               <!-- Pop up con la info del sendero-->
+        <a href="#datos" data-rel="popup" data-role="button" data-inline="true" data-icon="info" data-iconpos="notext" class="ui-btn-right">Informacíon sobre el sendero</a>
+
+
+            <div data-role="popup" id="datos" class="ui-content" style="max-width:280px">
+            
+                        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left"></a>
+                        
+                        <img src="images/info.png">
+                        
+            </div>
+<!-- /Pop up con la info del sendero-->
+  	</div><!--/Header-->
+
+<div id='map'></div>
+	<!--Footer-->          
+    <div data-role="footer" data-position="fixed" data-theme="b">
+    
+          <div data-role="navbar">
+          <ul>  
+          <li><a href="index.html" rel="external" data-theme="b" data-inline="true" data-theme="b" data-icon="star">Portada</a></li>
+            <li><a href="lista.html" rel="external" data-inline="true" data-theme="b" data-icon="list">Lista de Hitos</a></li> 
+          </ul>
+          </div>        
+    </div><!--/Footer-->
+<script>
+var map = L.mapbox.map('map', 'senderoazul.hnl3dio3').setView([43.562605772500405,-6.185882091522217],13);
+var geoJson = {
+    type: 'FeatureCollection',
+    features: [{
+        type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul de La Concha de Artedo',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			"marker-symbol": "embassy",
+			url: 'hito1ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.185882091522217,43.562605772500405]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'LIC y ZEPA Cabo Busto-Luanco',
+			"marker-color": "#009933",	
+			'marker-size': 'small',
+			"marker-symbol": "park2",
+			url: 'hito2ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.187435513877858,43.56318301300468]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Dunas Embrionarias',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito3ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.188682317733765,43.56364752617616]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Brezales Costeros',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito4ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.189562082290649,43.562201505028284]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Alisedas',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito5ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.189224123954773,43.56117527541571]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul de San Pedro de la Ribera',
+            "marker-color": "#0066cc",
+            'marker-size': 'small',
+            "marker-symbol": "embassy",
+            url: 'hito6ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.14567500000,43.56353333333333]
+        }
+    }]
+};
+map.markerLayer.setGeoJSON(geoJson);
+map.markerLayer.on('click', function(e) {
+    e.layer.unbindPopup();
+    window.open(e.layer.feature.properties.url);
+});
+map.markerLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+map.markerLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org	
+        type: 'Feature',
+        properties: {
+            title: '<center>S.O.S</center>',
+			"marker-color": "#ff0000",
+			"marker-symbol": "hospital",
+			'marker-size': 'small',			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.18954062461853,43.56395071975707]
+        }   
+}).addTo(map);
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+        type: 'Feature',
+        properties: {
+            title: '<center>S.O.S</center>',
+			"marker-color": "#ff0000",
+			"marker-symbol": "hospital",
+			'marker-size': 'small',			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.150273084640503,43.559107214151574]
+        }  
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: '<center>WC</center>',
+			"marker-color": "#ffc84e",
+			"marker-symbol": "toilets",
+			'marker-size': 'small',
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.189680099487305,43.56402068728978]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Información turística',
+			"marker-color": "#ff00da",
+			'marker-size': 'small',
+			"marker-symbol": "i",		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.147623062133789,43.56440939432519]
+        }    
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Información turística',
+			"marker-color": "#ff00da",
+			'marker-size': 'small',
+			"marker-symbol": "i",		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.147623062133789,43.56440939432519]
+        }   
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Acceso adaptado',
+			"marker-color": "#ff793d",
+			'marker-size': 'small',
+			"marker-symbol": "disability",			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.189637184143066,43.560009084182894]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Parking',
+			"marker-color": "#748288",
+			'marker-size': 'small',
+			"marker-symbol": "parking",			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-6.188950538635254,43.560304521430105]
+        }
+}).addTo(map);
+</script>
+</body>
+</html>

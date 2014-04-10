@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link href="../jquery/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+  <script src="../js/jquery-1.10.2.min.js"></script>
+  <script src="../jquery/jquery.mobile-1.3.2.min.js"></script>
+  <script src='../scripts/mapbox.js'></script>
+  <link href='../css/mapbox.css' rel='stylesheet' />
+  <link href='../css/sa.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+  <![endif]-->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<!--Header-->
+  <div data-role="header" data-position="fixed" data-theme="b">
+    <a data-rel="back" rel="external" data-role="button" data-inline="true" data-icon="back">Atrás</a>
+    
+    <h1>A Guarda</h1>
+   <!-- Pop up con la info del sendero-->
+        <a href="#datos" data-rel="popup" data-role="button" data-inline="true" data-icon="info" data-iconpos="notext" class="ui-btn-right">Informacíon sobre el sendero</a>
+
+
+            <div data-role="popup" id="datos" class="ui-content" style="max-width:280px">
+            
+                        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left"></a>
+                        
+                        <img src="images/info.png">
+                        
+            </div>
+<!-- /Pop up con la info del sendero-->
+  	</div><!--/Header-->
+
+<div id='map'></div>
+<!--Footer-->          
+    <div data-role="footer" data-position="fixed" data-theme="b">
+        <div data-role="navbar">
+          <ul>
+            <li><a href="index.html" rel="external" data-theme="b" data-inline="true" data-theme="b" data-icon="star">Portada</a></li>
+            <li><a href="lista.html#hitosListEspanol" rel="external" data-inline="true" data-theme="b" data-icon="list">Lista de Hitos</a></li> 
+          </ul>
+        </div>        
+    </div><!--/Footer-->
+
+<script>
+var map = L.mapbox.map('map', 'senderoazul.hnknnnla').setView([41.89084105056772,-8.87995719909668],13);
+var geoJson = {
+    type: 'FeatureCollection',
+    features: [{
+	type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul de O Muíño',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			"marker-symbol": "embassy",
+			url: 'hito1ES.html'
+		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.868519828033413, 41.87291406645905]
+        }
+	},
+	{
+	type: 'Feature',
+        properties: {
+            title: 'Playa Bandera Azul de Area Grande',
+			"marker-color": "#0066cc",
+			'marker-size': 'small',
+			"marker-symbol": "embassy",
+			url: 'hito2ES.html'
+		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.876470565795898, 41.91009733612969]
+        }
+	},
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Sendero Azul Litoral de A Guarda',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito3ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.868756294250488,41.873427580593315]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Espacio Natural del Estuario del Miño',
+			"marker-color": "#087f10",	
+			'marker-size': 'small',
+			"marker-symbol": "park2",
+			url: 'hito4ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.868112564086914,41.872756507900945]
+        }
+	
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Desembocadura del Río Miño',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito5ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.870601654052734, 41.87243694699968]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Regeneración Dunar',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito6ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.871281069946235,41.87251714544735]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Puntal: A Insúa y Salinas',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito7ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.873040599060004,41.87072757712115]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Valores Naturales',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito8ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.873434066772461,41.87141434137945]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'La Costa Atlántica y los Molinos de Viento',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito9ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.876266479492187,41.87607984656555]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'El Seixal',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito10ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.87995719909668,41.89084105056772]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Cetáreas',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito11ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.87819766998291,41.89622388773237]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Playa O Carreiro',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito12ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.87643814086914,41.89782108151146]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Puerto Pesquero',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito13ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.876588344573974,41.89857174878869]
+        }
+    },
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Monumentos Marineros',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito14ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.874657154083252,41.89852383411973]
+        }
+    }, 
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Paseo y Dique Nuevo',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito15ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.876030445098877,41.90053621926224]
+        }
+    }, 
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Museo del Mar: Atalaya',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito16ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.880300521850586, 41.902372864633364]
+        }
+    }, 
+	{
+        type: 'Feature',
+        properties: {
+            title: 'Playa Fedorento',
+			"marker-color": "#009933",
+			'marker-size': 'small',
+			url: 'hito17ES.html'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.876073360443115, 41.90811403706869]
+        }
+    }]
+};
+map.markerLayer.setGeoJSON(geoJson);
+map.markerLayer.on('click', function(e) {
+    e.layer.unbindPopup();
+    window.open(e.layer.feature.properties.url);
+});
+map.markerLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+map.markerLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+	
+        type: 'Feature',
+        properties: {
+            title: '<center>S.O.S</center>',
+			"marker-color": "#ff0000",
+			"marker-symbol": "hospital",
+			'marker-size': 'small',
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.86871337890625,41.87345953626004]
+        }
+    
+}).addTo(map);
+
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+	
+        type: 'Feature',
+        properties: {
+            title: '<center>S.O.S</center>',
+			"marker-color": "#ff0000",
+			"marker-symbol": "hospital",
+			'marker-size': 'small',
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.876395225524902,41.90994248011172]
+        }
+    
+}).addTo(map);
+
+L.mapbox.markerLayer({
+    // this feature is in the GeoJSON format: see geojson.org
+	
+        type: 'Feature',
+        properties: {
+            title: '<center>S.O.S</center>',
+			"marker-color": "#ff0000",
+			"marker-symbol": "hospital",
+			'marker-size': 'small',
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.864164352416992,41.903107507989986]
+        }
+    
+}).addTo(map);
+
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: '<center>WC</center>',
+			"marker-color": "#ffc84e",
+			"marker-symbol": "b",
+			'marker-size': 'small',
+			
+		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.868284225463867,41.87301215547166]
+        }
+}).addTo(map);
+
+L.mapbox.markerLayer({
+	
+        type: 'Feature',
+        properties: {
+            title: 'Parking',
+			"marker-color": "#748288",
+			'marker-size': 'small',
+			"marker-symbol": "parking",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.868627548217773,41.87422646746916]
+        }
+}).addTo(map);
+
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Parking',
+			"marker-color": "#748288",
+			'marker-size': 'small',
+			"marker-symbol": "parking",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-8.877596855163574,41.89850786255543]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+	
+        type: 'Feature',
+        properties: {
+            title: 'Puerto Bandera Azul',
+			"marker-color": "#04097a",
+			'marker-size': 'small',
+			"marker-symbol": "harbor",
+		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.71072361755371, 40.879175361675294]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Centro Bandera Azul',
+			"marker-color": "#91643d",
+			'marker-size': 'small',
+			"marker-symbol": "museum",
+		
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.71072361755371, 40.89175361675294]
+        }
+}).addTo(map);
+
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Espacio Natural Protegido',
+			"marker-color": "#087f10",
+			'marker-size': 'small',
+			"marker-symbol": "park2",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.71072361755371, 40.9175361675294]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Agua potable',
+			"marker-color": "#78eaff",
+			'marker-size': 'small',
+			"marker-symbol": "marker-stroked",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.76072361755371, 40.979175361675294]
+        }
+}).addTo(map);
+L.mapbox.markerLayer({
+        type: 'Feature',
+        properties: {
+            title: 'Parking',
+			"marker-color": "#748288",
+			'marker-size': 'small',
+			"marker-symbol": "parking",
+			
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0.72072361755371, 40.879175361675294]
+        }
+}).addTo(map);
+</script>
+
+
+</body>
+</html>
